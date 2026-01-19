@@ -13,20 +13,26 @@
                 <h1 class="text-3xl font-bold text-center mb-8">Daftar Produk Toko Kami</h1>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    @foreach ($products as $item)
+                    @foreach ($product as $item)
                         <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 flex flex-col">
 
-                            <div
-                                class="w-full aspect-square overflow-hidden rounded-md mb-4 bg-gray-50 flex items-center justify-center">
-                                @if ($item->image)
-                                    <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
-                                        class="w-full h-full object-contain p-2">
-                                @else
-                                    <span class="text-gray-400 italic text-xs">Tidak ada gambar</span>
-                                @endif
-                            </div>
+                            <a href="{{ route('product-detail', $item->slug) }}" class="group">
 
-                            <h2 class="text-sm font-semibold text-gray-800 line-clamp-2 h-10">{{ $item->name }}</h2>
+                                <div
+                                    class="w-full aspect-square overflow-hidden rounded-md mb-4 bg-gray-50 flex items-center justify-center">
+                                    @if ($item->image)
+                                        <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
+                                            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
+                                    @else
+                                        <span class="text-gray-400 italic text-xs">Tidak ada gambar</span>
+                                    @endif
+                                </div>
+
+                                <h2
+                                    class="text-sm font-semibold text-gray-800 line-clamp-2 h-10 group-hover:text-blue-600 transition-colors">
+                                    {{ $item->name }}
+                                </h2>
+                            </a>
                             <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ $item->description }}</p>
 
                             <div class="mt-auto pt-4 flex flex-col gap-2">
@@ -42,7 +48,7 @@
                     @endforeach
                 </div>
 
-                @if ($products->isEmpty())
+                @if ($product->isEmpty())
                     <p class="text-center text-gray-500">Belum ada produk di database.</p>
                 @endif
             </div>
