@@ -27,7 +27,19 @@ class ProductSeeder extends Seeder
                 'description' => 'Laptop spesifikasi tinggi untuk gaming dan desain.',
                 'price' => 15000000,
                 'stock' => 5,
-                'image' => null
+                'image' => 'laptop-gaming.jpg'
+            ]
+        );
+
+        \App\Models\Product::updateOrCreate(
+            ['slug' => 'mouse-gaming'],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mouse Gaming',
+                'description' => 'Mouse dengan PAW 3950 untuk gaming.',
+                'price' => 800000,
+                'stock' => 5,
+                'image' => 'mouse-gaming.jpg'
             ]
         );
     }
