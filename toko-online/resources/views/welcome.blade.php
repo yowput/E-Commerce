@@ -1,57 +1,40 @@
-        <!DOCTYPE html>
-        <html lang="en">
+@extends('layouts.app')
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Toko Online Saya</title>
-            <script src="https://cdn.tailwindcss.com"></script>
-        </head>
+@section('content')
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-12 text-center uppercase tracking-tighter">
+            {{ isset($category) ? $category->name : 'Product' }}
+        </h1>
 
-        <body class="bg-gray-100 p-10">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-3xl font-bold text-center mb-8">Daftar Produk Toko Kami</h1>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    @foreach ($product as $item)
-                        <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 flex flex-col">
-
-                            <a href="{{ route('product-detail', $item->slug) }}" class="group">
-
-                                <div
-                                    class="w-full aspect-square overflow-hidden rounded-md mb-4 bg-gray-50 flex items-center justify-center">
-                                    @if ($item->image)
-                                        <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
-                                            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
-                                    @else
-                                        <span class="text-gray-400 italic text-xs">Tidak ada gambar</span>
-                                    @endif
-                                </div>
-
-                                <h2
-                                    class="text-sm font-semibold text-gray-800 line-clamp-2 h-10 group-hover:text-blue-600 transition-colors">
-                                    {{ $item->name }}
-                                </h2>
-                            </a>
-                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ $item->description }}</p>
-
-                            <div class="mt-auto pt-4 flex flex-col gap-2">
-                                <span class="text-green-600 font-bold text-sm">
-                                    Rp {{ number_format($item->price, 0, ',', '.') }}
-                                </span>
-                                <button
-                                    class="w-full bg-blue-600 text-white text-xs py-2 rounded-md hover:bg-blue-700 transition">
-                                    Beli
-                                </button>
-                            </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+            @foreach ($product as $item)
+                <div
+                    class="bg-[#f3f4f7] p-6 rounded-3xl transition-all duration-500 flex flex-col group border border-transparent hover:border-blue-400 hover:ring-4 hover:ring-blue-400/20 hover:shadow-xl hover:bg-[#ebedf2]">
+                    <a href="{{ route('product-detail', $item->slug) }}" class="flex flex-col h-full">
+                        <div class="w-full aspect-square overflow-hidden mb-6 flex items-center justify-center">
+                            @if ($item->image)
+                                <img src="{{ asset('images/' . $item->image) }}"
+                                    class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition duration-200">
+                            @else
+                                <span class="text-gray-400 italic text-xs">No Image</span>
+                            @endif
                         </div>
-                    @endforeach
+
+                        <h2
+                            class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight mb-4 transition-all duration-200 group-hover:-translate-y-2 group-hover:text-blue-600">
+                            {{ $item->name }}
+                        </h2>
+
+                        <div class="mt-auto overflow-hidden">
+                            <span
+                                class="text-blue-600 font-bold text-sm transition-all duration-200 flex items-center group-hover:translate-x-3">
+                                Lihat Detail <span
+                                    class="ml-1 transition-transform duration-200 group-hover:translate-x-2">&rarr;</span>
+                            </span>
+                        </div>
+                    </a>
                 </div>
-
-                @if ($product->isEmpty())
-                    <p class="text-center text-gray-500">Belum ada produk di database.</p>
-                @endif
-            </div>
-        </body>
-
-        </html>
+            @endforeach
+        </div>
+    </div>
+@endsection
