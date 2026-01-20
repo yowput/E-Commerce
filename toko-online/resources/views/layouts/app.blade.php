@@ -25,12 +25,12 @@
 
                 <div class="hidden md:flex space-x-8">
                     <a href="/"
-                        class="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium">
+                        class="{{ Route::is('welcome') ? 'text-gray-900 border-blue-500' : 'text-gray-500 border-transparent' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-bold uppercase tracking-wider transition">
                         Product
                     </a>
 
-                    <a href="#"
-                        class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                    <a href="{{ route('about') }}"
+                        class="{{ Route::is('about') ? 'text-gray-900 border-blue-500' : 'text-gray-500 border-transparent' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-bold uppercase tracking-wider transition">
                         About Us
                     </a>
                 </div>
