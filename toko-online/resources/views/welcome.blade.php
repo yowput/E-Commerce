@@ -2,10 +2,12 @@
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-extrabold text-gray-900 mb-12 text-center uppercase tracking-tighter">
-            {{ isset($category) ? $category->name : 'Product' }}
+        <h1
+            class="text-4xl font-black text-gray-900 mb-12 text-center uppercase tracking-[0.2em] relative inline-block w-full">
+            <span class="relative">
+                {{ isset($category) ? $category->name : 'Product' }}
+            </span>
         </h1>
-
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             @foreach ($product as $item)
                 <div

@@ -8,9 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-900">
 
-    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+    <div class="bg-black text-white text-[10px] py-2 text-center uppercase tracking-[0.3em] font-bold">
+        Level Up Your Productivity & Game On
+    </div>
+    <nav id="navbar" class="bg-white border-b sticky top-0 z-50 transition-shadow duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
 
@@ -25,13 +28,6 @@
                         class="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium">
                         Product
                     </a>
-
-                    @foreach (\App\Models\Category::all() as $cat)
-                        <a href="{{ route('category-detail', $cat->slug) }}"
-                            class="text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium transition">
-                            {{ $cat->name }}
-                        </a>
-                    @endforeach
 
                     <a href="#"
                         class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium">
@@ -48,6 +44,7 @@
                 </div>
 
             </div>
+
         </div>
     </nav>
 
@@ -56,9 +53,22 @@
     </main>
 
     <footer class="bg-white border-t py-10 text-center text-gray-400 text-sm">
-        &copy; 2026 MyStore. All Rights Reserved.
+        &copy; 2026 My Store. All Rights Reserved.
     </footer>
-
+    <script>
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 1) {
+                // Jika discroll lebih dari 10 pixel, tambah shadow
+                nav.classList.add('shadow-md');
+                nav.classList.remove('border-b'); // Opsional: hapus border saat ada shadow biar rapi
+            } else {
+                // Jika balik ke paling atas, hapus shadow
+                nav.classList.remove('shadow-md');
+                nav.classList.add('border-b');
+            }
+        };
+    </script>
 </body>
 
 </html>
