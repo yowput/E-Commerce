@@ -36,7 +36,6 @@
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <button class="text-gray-400 hover:text-gray-500">🔍</button>
                     <button
                         class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition">
                         Login
