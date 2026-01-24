@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="hidden md:flex space-x-8">
-                    <a href="/"
-                        class="{{ Route::is('welcome') ? 'text-gray-900 border-blue-500' : 'text-gray-500 border-transparent' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-bold uppercase tracking-wider transition">
+                    <a href="{{ route('welcome') }}"
+                        class="{{ request()->routeIs('welcome') || request()->routeIs('category-detail') ? 'text-gray-900 border-blue-500' : 'text-gray-500 border-transparent' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-bold uppercase tracking-wider transition">
                         Product
                     </a>
 

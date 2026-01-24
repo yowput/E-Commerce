@@ -5,11 +5,23 @@
         <h1
             class="text-4xl font-black text-gray-900 mb-12 text-center uppercase tracking-[0.2em] relative inline-block w-full">
             <span class="relative">
-                {{ isset($category) ? $category->name : 'Product' }}
+                PRODUCT
             </span>
         </h1>
+
+        <div
+            class="flex justify-center flex-wrap gap-8 mb-16 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+            {{-- Kita memfilter agar 'Elektronik' tidak muncul di list --}}
+            @foreach (\App\Models\Category::where('name', '!=', 'Elektronik')->get() as $cat)
+                <a href="{{ route('category-detail', $cat->slug) }}"
+                    class="{{ isset($category) && $category->id == $cat->id ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-gray-900 border-b-2 border-transparent' }} pb-2 transition-all duration-300">
+                    {{ $cat->name }}
+                </a>
+            @endforeach
+        </div>
+
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            @foreach ($product as $item)
+            @forelse ($product as $item)
                 <div
                     class="bg-[#f3f4f7] p-6 rounded-3xl transition-all duration-500 flex flex-col group border border-transparent hover:border-blue-400 hover:ring-4 hover:ring-blue-400/20 hover:shadow-xl hover:bg-[#ebedf2]">
                     <a href="{{ route('product-detail', $item->slug) }}" class="flex flex-col h-full">
@@ -27,6 +39,7 @@
                             {{ $item->name }}
                         </h2>
 
+
                         <div class="mt-auto overflow-hidden">
                             <span
                                 class="text-blue-600 font-bold text-sm transition-all duration-200 flex items-center group-hover:translate-x-3">
@@ -36,7 +49,12 @@
                         </div>
                     </a>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-span-full text-center py-20 text-gray-400 italic">
+                    Produk tidak ditemukan untuk kategori ini.
+                </div>
+            @endforelse
+
         </div>
     </div>
 @endsection

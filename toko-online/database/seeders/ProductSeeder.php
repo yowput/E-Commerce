@@ -11,42 +11,44 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
+        // Contoh di dalam run()
+        $catLaptop   = Category::firstOrCreate(['slug' => 'laptop'], ['name' => 'Laptop']);
+        $catMouse    = Category::firstOrCreate(['slug' => 'mouse'], ['name' => 'Mouse']);
+        $catKeyboard = Category::firstOrCreate(['slug' => 'keyboard'], ['name' => 'Keyboard']);
+        $catHeadset  = Category::firstOrCreate(['slug' => 'headset'], ['name' => 'Headset']);
+        $catMousepad = Category::firstOrCreate(['slug' => 'mousepad'], ['name' => 'Mousepad']);
         // 1. Buat atau cari Kategori
-        // Kita cari berdasarkan 'slug', jika tidak ada, buat dengan 'name' & 'slug'
-        $category = \App\Models\Category::firstOrCreate(
-            ['slug' => 'elektronik'],
-            ['name' => 'Elektronik']
-        );
+        // Kita cari berdasarkan 'slug', jika tidak ada, buat dengan 'name' & 'slug
 
         // 2. Buat atau cari Produk
-        \App\Models\Product::firstOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'laptop-gaming'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catLaptop->id, // Pakai ID Laptop
                 'name' => 'Laptop ROG',
-                'description' => 'Laptop spesifikasi tinggi untuk gaming dan desain.',
+                'description' => 'Laptop spesifikasi tinggi.',
                 'price' => 15000000,
                 'stock' => 5,
                 'image' => 'laptop-gaming.jpg'
             ]
         );
 
-        \App\Models\Product::updateOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'mouse-gaming'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catMouse->id, // Pakai ID Mouse
                 'name' => 'Inno X3 Pro',
-                'description' => 'Mouse dengan PAW 3950 untuk gaming.',
+                'description' => 'Mouse PAW 3950.',
                 'price' => 800000,
                 'stock' => 5,
                 'image' => 'mouse-gaming.jpg'
             ]
         );
 
-        \App\Models\Product::updateOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'keyboard-gaming'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catKeyboard->id,
                 'name' => 'Ajazz Ak680',
                 'description' => 'Keyboard mekanik dengan pencahayaan RGB.',
                 'price' => 1500000,
@@ -55,10 +57,10 @@ class ProductSeeder extends Seeder
             ]
         );
 
-        \App\Models\Product::updateOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'Headset-gaming'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catHeadset->id,
                 'name' => 'Headset Gaming',
                 'description' => 'Headset gaming dengan suara jernih dan nyaman digunakan.',
                 'price' => 700000,
@@ -67,10 +69,10 @@ class ProductSeeder extends Seeder
             ]
         );
 
-        \App\Models\Product::updateOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'mouse-logitech'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catMouse->id,
                 'name' => 'Mouse Logitech',
                 'description' => 'Mouse Logitech dengan desain ergonomis dan presisi tinggi.',
                 'price' => 1000000,
@@ -79,15 +81,27 @@ class ProductSeeder extends Seeder
             ]
         );
 
-        \App\Models\Product::updateOrCreate(
+        Product::updateOrCreate(
             ['slug' => 'glasspad'],
             [
-                'category_id' => $category->id,
+                'category_id' => $catMousepad->id,
                 'name' => 'Glasspad',
                 'description' => 'Glasspad gaming dengan permukaan halus untuk kontrol maksimal.',
                 'price' => 1300000,
                 'stock' => 5,
                 'image' => 'glasspad.jpeg'
+            ]
+        );
+
+        Product::updateOrCreate(
+            ['slug' => 'glasspad-rog'],
+            [
+                'category_id' => $catMousepad->id,
+                'name' => 'Glasspad ROG',
+                'description' => 'Mousepad gaming dengan permukaan anti-slip dan desain menarik.',
+                'price' => 1500000,
+                'stock' => 5,
+                'image' => 'glasspadROG.jpg'
             ]
         );
     }
