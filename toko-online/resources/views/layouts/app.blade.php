@@ -10,10 +10,11 @@
 
 <body class="bg-gray-50 flex flex-col min-h-screen text-gray-900">
 
-    <div class="bg-black text-white text-[10px] py-2 text-center uppercase tracking-[0.3em] font-bold">
-        Level Up Your Productivity & Game On
-    </div>
+
     <nav id="navbar" class="bg-white border-b sticky top-0 z-50 transition-shadow duration-300">
+        <div class="bg-black text-white text-[10px] py-2 text-center uppercase tracking-[0.3em] font-bold">
+            Level Up Your Productivity & Game On
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
 
@@ -47,8 +48,7 @@
         </div>
     </nav>
 
-    <main class="py-10 flex-grow">
-        @yield('content')
+    <main class="py-10 flex-grow px-4 sm:px-0"> @yield('content')
     </main>
 
     <footer class="bg-white border-t py-10 text-center text-gray-400 text-sm">
