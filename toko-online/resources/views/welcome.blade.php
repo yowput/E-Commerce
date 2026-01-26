@@ -43,7 +43,7 @@
                         </div>
 
                         <h2
-                            class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight mb-4 transition-all duration-200 group-hover:text-blue-600">
+                            class="text-lg font-black text-gray-900 tracking-tight leading-tight mb-4 transition-all duration-200 group-hover:text-blue-600">
                             {{ $item->name }}
                         </h2>
 

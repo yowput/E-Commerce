@@ -104,5 +104,28 @@ class ProductSeeder extends Seeder
                 'image' => 'glasspadROG.jpg'
             ]
         );
+
+        Product::updateOrCreate(
+            ['slug' => 'msi-laptop'],
+            [
+                'category_id' => $catLaptop->id,
+                'name' => 'MSI Laptop',
+                'description' => 'Laptop gaming MSI dengan performa tinggi.',
+                'price' => 20000000,
+                'stock' => 5,
+                'image' => 'Msi-laptop.jpeg'
+            ]
+        );
+        Product::updateOrCreate(
+            ['slug' => 'tuf-laptop'],
+            [
+                'category_id' => $catLaptop->id,
+                'name' => 'TUF Laptop',
+                'description' => 'Laptop gaming ASUS TUF dengan daya tahan ekstra.',
+                'price' => 18000000,
+                'stock' => 5,
+                'image' => 'tuf-gaming.jpeg'
+            ]
+        );
     }
 }
